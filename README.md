@@ -51,3 +51,63 @@ This project analyzes customer data from a European credit card company to predi
 
 ## Installation
 ```bash
+## Project Workflow
+
+### 1. Data Loading & Exploration
+- Loaded 10,000 customer records with 14 features
+- Analyzed data structure and distributions
+- Verified data quality (no missing values detected)
+
+### 2. Data Preprocessing
+- Removed irrelevant columns (RowNumber, CustomerId, Surname)
+- Encoded categorical variables using Label Encoding and One-Hot Encoding
+  - Gender: Male=1, Female=0
+  - Geography: One-hot encoded (Germany, Spain, France)
+- Converted data types for model compatibility
+
+### 3. Feature Engineering
+Created new features to enhance model performance:
+- **BalanceToSalary**: Ratio of account balance to estimated salary
+- **TenureAgeRatio**: Ratio of tenure to age
+- **IsZeroBalance**: Binary indicator for zero balance accounts
+- **AgeGroup**: Categorical age bins (Young, Middle, Senior, Elderly)
+
+### 4. Exploratory Data Analysis
+- Visualized churn distribution (20.37% overall churn rate)
+- Analyzed numerical feature distributions (CreditScore, Age, Tenure, Balance, EstimatedSalary)
+- Created correlation matrix to identify feature relationships
+- Examined churn patterns by:
+  - Gender (Female: 25.1%, Male: 16.5%)
+  - Geography (Germany shows highest churn at 32%)
+  - Age groups (50+ age group shows 44.6% churn)
+
+### 5. Model Training & Evaluation
+- Split data into 80% training and 20% testing sets
+- Standardized features using StandardScaler
+- Trained three classification models:
+  - Logistic Regression (baseline)
+  - Random Forest Classifier
+  - Gradient Boosting Classifier
+- Evaluated models using:
+  - Accuracy
+  - ROC-AUC Score
+  - 5-fold Cross-validation
+  - Confusion Matrix
+  - Classification Report
+
+### 6. Feature Importance Analysis
+- Extracted feature importances from best model (Gradient Boosting)
+- Identified top 10 predictive features
+- Generated actionable business insights
+
+## Model Performance Comparison
+
+| Model | Accuracy | ROC-AUC | CV Score |
+|-------|----------|---------|----------|
+| **Gradient Boosting** | **86.9%** | **0.870** | **0.8636** |
+| Random Forest | 86.2% | 0.852 | 0.8599 |
+| Logistic Regression | 82.7% | 0.790 | 0.8226 |
+
+### Gradient Boosting - Detailed Metrics
+
+**Classification Report**:
